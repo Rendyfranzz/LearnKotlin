@@ -4,59 +4,45 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.example.mobiledevelopment.data.model.User
 import com.example.mobiledevelopment.databinding.ActivityRegisterBinding
 import com.example.mobiledevelopment.utils.Constant
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
-
+    val user = User (
+        "rendi",
+        "rendi@gamil.com",
+        "rendi"
+    )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
         doRegister()
-        playAnimation()
     }
     private fun doRegister() {
-        binding.signupButton.setOnClickListener {
+        binding.signupButton.setActions {
+            if (binding.etName.text.toString() == user.username &&
+                binding.etPassword.text.toString() == user.password) {
+                AlertDialog.Builder(this).apply {
+                    setTitle("Yeah!")
+                    setMessage("Akunnya sudah jadi nih")
+                    setPositiveButton("Lanjut") { _, _ ->
+                        finish()
+                    }
+                    create()
+                    show()
+                }
 
-                val intent = Intent(this, WelcomePageActivity::class.java)
-                startActivity(intent)
-
+            } else {
+                Toast.makeText(this, "Username atau Password Salah", Toast.LENGTH_SHORT).show()
+            }
         }
     }
-
-    private fun playAnimation() {
-        ObjectAnimator.ofFloat(binding.imageView, View.TRANSLATION_X, -30f, 30f).apply {
-            duration = Constant.IMAGE_DURATION
-            repeatCount = ObjectAnimator.INFINITE
-            repeatMode = ObjectAnimator.REVERSE
-        }.start()
-
-        val title = ObjectAnimator.ofFloat(binding.titleTextView, View.ALPHA, 1f).setDuration(Constant.DURATION)
-        val nameTextView = ObjectAnimator.ofFloat(binding.nameEditText, View.ALPHA, 1f).setDuration(Constant.DURATION)
-        val nameEditTextLayout = ObjectAnimator.ofFloat(binding.nameEditTextLayout, View.ALPHA, 1f).setDuration(Constant.DURATION)
-        val emailTextView = ObjectAnimator.ofFloat(binding.emailEditText, View.ALPHA, 1f).setDuration(Constant.DURATION)
-        val emailEditTextLayout = ObjectAnimator.ofFloat(binding.emailEditTextLayout, View.ALPHA, 1f).setDuration(Constant.DURATION)
-        val passwordTextView = ObjectAnimator.ofFloat(binding.passwordEditText, View.ALPHA, 1f).setDuration(Constant.DURATION)
-        val passwordEditTextLayout = ObjectAnimator.ofFloat(binding.passwordEditTextLayout, View.ALPHA, 1f).setDuration(Constant.DURATION)
-        val signup = ObjectAnimator.ofFloat(binding.signupButton, View.ALPHA, 1f).setDuration(500)
-
-
-        AnimatorSet().apply {
-            playSequentially(
-                title,
-                nameTextView,
-                nameEditTextLayout,
-                emailTextView,
-                emailEditTextLayout,
-                passwordTextView,
-                passwordEditTextLayout,
-                signup
-            )
-            startDelay = Constant.DURATION
-        }.start()
     }
-}

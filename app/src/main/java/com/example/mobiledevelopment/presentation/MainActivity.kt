@@ -12,9 +12,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     val user = User (
-        "rezaalamsyah",
-        "passReza",
-        "Reza Alamsyah"
+        "rendi",
+        "rendi@gamil.com",
+        "rendi"
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
