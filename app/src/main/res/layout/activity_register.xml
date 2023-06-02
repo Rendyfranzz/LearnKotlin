@@ -6,22 +6,7 @@
     android:layout_height="match_parent"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.RegisterActivity">
-    <TextView
-        android:id="@+id/titleTextView"
-        android:alpha="0"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/title_signup_page"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guidelineHorizontal" />
+
     <TextView
         android:textSize="24sp"
         android:id="@+id/label_signup"
@@ -54,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_grey_stroke_radius_6px"
-            android:inputType="textEmailAddress"
+            android:inputType="text"
             android:textCursorDrawable="@null"
             android:theme="@style/SocialTravelAjaEditTextWhiteStyle" />
 
@@ -75,14 +60,17 @@
         ads:errorIconDrawable="@drawable/ic_info_error"
         app:layout_constraintTop_toBottomOf="@id/til_name">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.example.mobiledevelopment.utils.EmailEdit
             android:id="@+id/et_email"
+            android:alpha="0"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_grey_stroke_radius_6px"
-            android:inputType="textEmailAddress"
+            android:theme="@style/SocialTravelAjaEditTextWhiteStyle"
             android:textCursorDrawable="@null"
-            android:theme="@style/SocialTravelAjaEditTextWhiteStyle" />
+            android:ems="10"
+            android:inputType="textEmailAddress" />
+
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -100,14 +88,18 @@
         ads:errorIconDrawable="@drawable/ic_info_error"
         app:layout_constraintTop_toBottomOf="@id/til_email">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.example.mobiledevelopment.utils.PasswordEdit
             android:id="@+id/et_password"
+            android:alpha="0"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_grey_stroke_radius_6px"
+            android:ems="10"
             android:inputType="textPassword"
+            android:background="@drawable/bg_grey_stroke_radius_6px"
+            android:theme="@style/SocialTravelAjaEditTextWhiteStyle"
             android:textCursorDrawable="@null"
-            android:theme="@style/SocialTravelAjaEditTextWhiteStyle" />
+            app:passwordToggleEnabled="true" />
+
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -117,12 +109,36 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:layout_marginTop="496dp"
+        android:layout_marginTop="80dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/til_password"
         app:textTitle="Signup" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="64dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_percent="0.30191082"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineVertical"
+        android:layout_width="wrap_content"
+        android:layout_height="64dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_percent="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="64dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="73dp" />
 
 
 

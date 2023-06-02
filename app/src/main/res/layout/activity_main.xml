@@ -21,11 +21,11 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_margin="16dp"
-        android:id="@+id/til_username"
+        android:id="@+id/til_email"
         style="@style/SocialTravelAjaTextInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Masukkan username"
+        android:hint="Masukkan email"
         android:visibility="visible"
         app:errorEnabled="true"
         android:layout_marginTop="24dp"
@@ -34,14 +34,16 @@
         ads:errorIconDrawable="@drawable/ic_info_error"
         app:layout_constraintTop_toBottomOf="@id/label_login">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_username"
+        <com.example.mobiledevelopment.utils.EmailEdit
+            android:id="@+id/et_email"
+            android:alpha="0"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_grey_stroke_radius_6px"
-            android:inputType="textEmailAddress"
+            android:theme="@style/SocialTravelAjaEditTextWhiteStyle"
             android:textCursorDrawable="@null"
-            android:theme="@style/SocialTravelAjaEditTextWhiteStyle" />
+            android:ems="10"
+            android:inputType="textEmailAddress" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -51,22 +53,25 @@
         style="@style/SocialTravelAjaTextInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Masukkan password"
+        android:hint="Masukkan Password"
         android:visibility="visible"
         app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         ads:errorIconDrawable="@drawable/ic_info_error"
-        app:layout_constraintTop_toBottomOf="@id/til_username">
+        app:layout_constraintTop_toBottomOf="@id/til_email">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.example.mobiledevelopment.utils.PasswordEdit
             android:id="@+id/et_password"
+            android:alpha="0"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_grey_stroke_radius_6px"
+            android:ems="10"
             android:inputType="textPassword"
+            android:background="@drawable/bg_grey_stroke_radius_6px"
+            android:theme="@style/SocialTravelAjaEditTextWhiteStyle"
             android:textCursorDrawable="@null"
-            android:theme="@style/SocialTravelAjaEditTextWhiteStyle" />
+            app:passwordToggleEnabled="true" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

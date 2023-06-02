@@ -15,21 +15,17 @@ import com.example.mobiledevelopment.utils.Constant
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
-    val user = User (
-        "rendi",
-        "rendi@gamil.com",
-        "rendi"
-    )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
         doRegister()
+        playAnimation()
     }
     private fun doRegister() {
         binding.signupButton.setActions {
-            if (binding.etName.text.toString() == user.username &&
-                binding.etPassword.text.toString() == user.password) {
+            if (binding.etEmail.text.toString().isNotEmpty() && binding.etName.text.toString().isNotEmpty()
+                && binding.etPassword.text.toString().isNotEmpty()) {
                 AlertDialog.Builder(this).apply {
                     setTitle("Yeah!")
                     setMessage("Akunnya sudah jadi nih")
@@ -41,8 +37,24 @@ class RegisterActivity : AppCompatActivity() {
                 }
 
             } else {
-                Toast.makeText(this, "Username atau Password Salah", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Oppsss ada kesalahan", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    private fun playAnimation() {
+
+
+        val title = ObjectAnimator.ofFloat(binding.labelSignup, View.ALPHA, 1f).setDuration(Constant.DURATION)
+        val emailTextView = ObjectAnimator.ofFloat(binding.tilEmail, View.ALPHA, 1f).setDuration(Constant.DURATION)
+        val emailEditTextLayout = ObjectAnimator.ofFloat(binding.etEmail, View.ALPHA, 1f).setDuration(Constant.DURATION)
+        val passwordTextView = ObjectAnimator.ofFloat(binding.tilPassword, View.ALPHA, 1f).setDuration(Constant.DURATION)
+        val passwordEditTextLayout = ObjectAnimator.ofFloat(binding.etPassword, View.ALPHA, 1f).setDuration(Constant.DURATION)
+        val login = ObjectAnimator.ofFloat(binding.signupButton, View.ALPHA, 1f).setDuration(Constant.DURATION)
+
+        AnimatorSet().apply {
+            playSequentially(title, emailTextView, emailEditTextLayout, passwordTextView, passwordEditTextLayout, login)
+            startDelay = Constant.DURATION
+        }.start()
     }
     }
